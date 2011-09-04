@@ -16,6 +16,7 @@ module VMC::Cli
       'PHP'      => ['php',     { :mem => '128M', :description => 'PHP Application'}],
       'Erlang/OTP Rebar' => ['otp_rebar',  { :mem => '64M',  :description => 'Erlang/OTP Rebar Application'}],
       'WSGI'     => ['wsgi',    { :mem => '64M',  :description => 'Python WSGI Application'}],
+      'Cyclone'  => ['cyclone',    { :mem => '64M',  :description => 'Cyclone Application'}],
       'Django'   => ['django',  { :mem => '128M', :description => 'Python Django Application'}],
     }
 
@@ -92,6 +93,10 @@ module VMC::Cli
           # Python
           elsif !Dir.glob('wsgi.py').empty?
             return Framework.lookup('WSGI')
+
+          # Python Cyclone
+          elsif !Dir.glob('app.py').empty?
+            return Framework.lookup('Cyclone')
 
           end
         end
